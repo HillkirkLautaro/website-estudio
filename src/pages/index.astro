@@ -1,11 +1,42 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/layout.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <section style="text-align: center; padding: 3rem 1rem;">
+    <h2 style="color: #003366; font-size: 2.5rem; margin-bottom: 1rem;">
+      Bienvenido a Estudio Jurídico Alejandro Hillkirk
+    </h2>
+    <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+      Más de 20 años de trayectoria brindando asesoramiento legal personalizado en Zárate y toda la región. Nuestro compromiso es con tus derechos y tu tranquilidad.
+    </p>
+  </section>
+
+  <section style="background-color: #f5f5f5; padding: 2rem 1rem; text-align: center;">
+    <h3 style="color: #003366; font-size: 2rem;">Áreas de Práctica</h3>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1.5rem;">
+      <a href="/servicios/civil" style="background-color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); color: #003366; text-decoration: none; width: 200px;">
+        Derecho Civil (Página no disponible)
+      </a>
+      <a href="/servicios/penal" style="background-color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); color: #003366; text-decoration: none; width: 200px;">
+        Derecho Penal (Página no disponible)
+      </a>
+      <a href="/servicios/laboral" style="background-color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); color: #003366; text-decoration: none; width: 200px;">
+        Derecho Laboral
+      </a>
+      <a href="/servicios/gestoria" style="background-color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); color: #003366; text-decoration: none; width: 200px;">
+        Gestoría
+      </a>
+    </div>
+  </section>
+
+  <section style="text-align: center; padding: 3rem 1rem;">
+    <h3 style="color: #003366; font-size: 2rem;">¿Necesitás ayuda legal?</h3>
+    <p style="font-size: 1.1rem; margin: 1rem 0;">
+      Estamos disponibles para responder tus consultas. No dudes en contactarnos.
+    </p>
+    <a href="/contacto" style="background-color: #007BFF; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: bold;">
+      Contactanos
+    </a>
+  </section>
+</BaseLayout>
