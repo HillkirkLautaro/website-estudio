@@ -3,12 +3,36 @@ import Header from "../components/header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import "../styles/global.css";
+
+// Aceptamos `title` y `description` como props para SEO dinámico
+const { 
+  title = "Estudio Jurídico Alejandro Hillkirk | Inicio", 
+  description = "Ofrecemos asesoramiento legal experto en diversas áreas. Contacte a nuestro estudio jurídico para una consulta profesional y personalizada."
+} = Astro.props;
 ---
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Estudio Jurídico</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Básico -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph (para redes sociales como Facebook) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <!-- TODO: Reemplazar con una imagen representativa del sitio (ej. /social-preview.png) -->
+    <meta property="og:image" content={`${Astro.url.origin}/placeholder.jpg`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${Astro.url.origin}/placeholder.jpg`} />
+
   </head>
   <body>
     <Header />

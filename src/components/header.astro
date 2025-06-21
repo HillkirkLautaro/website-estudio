@@ -1,34 +1,20 @@
 ---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/icons/logo-estudio.png';
 ---
-<header style="background-color: #003366; color: white; padding: 1rem 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-	<div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center;">
-	  <div style="display: flex; align-items: center; gap: 1rem;">
-		<img src="public/icons/logo-estudio.png" alt="Logo Estudio Jurídico" style="height: 40px; width: 40px;" />
-		<h1 style="margin: 0; font-size: 1.75rem; font-weight: 600; letter-spacing: 1px;">
-		  Estudio Jurídico Alejandro Hillkirk
-		</h1>
-	  </div>
-  
-	  <nav>
-		<a href="/" style="margin-right: 1.5rem; color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease;">
-		  Inicio
-		</a>
-		<a href="/nosotros" style="margin-right: 1.5rem; color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease;">
-		  Nosotros
-		</a>
-		<a href="/contacto" style="color: white; font-weight: 500; text-decoration: none; transition: color 0.3s ease;">
-		  Contacto
-		</a>
-	  </nav>
-	</div>
-  
-	<style>
-	  header nav a:hover {
-		color: #ffcc00;
-	  }
-	  header nav a:focus {
-		outline: 2px solid #ffcc00;
-		outline-offset: 2px;
-	  }
-	</style>
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-container">
+      <Image src={logoImage} alt="Logo Estudio Jurídico" width={40} height={40} />
+      <h1 class="logo-title">
+        Estudio Jurídico Alejandro Hillkirk
+      </h1>
+    </div>
+
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Inicio</a>
+      <a href="/nosotros" class="nav-link">Nosotros</a>
+      <a href="/contacto" class="nav-link">Contacto</a>
+    </nav>
+  </div>
 </header>

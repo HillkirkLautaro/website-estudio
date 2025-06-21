@@ -69,7 +69,25 @@ import BaseLayout from "../layouts/layout.astro";
   .contact-section {
     max-width: 600px;
     margin: 2rem auto;
-    padding: 0 1rem;
+    padding: 2rem; /* Añadimos padding para que el fondo se vea mejor */
+    position: relative; /* Requerido para la marca de agua */
+    isolation: isolate; /* Crea un nuevo contexto de apilamiento */
+    background-color: #fff; /* Fondo blanco para que el contenido sea legible */
+    border-radius: 8px; /* Bordes redondeados para un look más suave */
+  }
+
+  /* Marca de agua para la sección de contacto */
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url('../assets/logo-estudio.png'); /* Ruta actualizada al PNG */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05;
+    border-radius: inherit; /* Hereda los bordes redondeados */
   }
 
   .title {
@@ -81,6 +99,17 @@ import BaseLayout from "../layouts/layout.astro";
   .subtitle {
     font-size: 1.1rem;
     margin-bottom: 2rem;
+  }
+
+  /* --- Responsive Styles --- */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem; /* Reducir tamaño para móviles */
+    }
+
+    .contact-section {
+      padding: 1rem; /* Menos padding en móviles */
+    }
   }
 
   .contact-form {

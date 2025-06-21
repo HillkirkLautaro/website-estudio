@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import whatsappIcon from '../assets/icons/whatsapp.svg';
+---
 <a
   href="https://wa.me/+5493487230611"
   target="_blank"
@@ -5,11 +9,10 @@
   aria-label="Contactar por WhatsApp"
   class="whatsapp-float"
 >
-  <img
-    src="/icons/whatsapp.svg"
+  <Image
+    src={whatsappIcon}
     alt="WhatsApp"
-    width="42"
-    height="42"
-    style="display: block;"
+    width={38}
+    height={38}
   />
 </a>
