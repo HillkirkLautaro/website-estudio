@@ -6,6 +6,8 @@ El sitio está construido con Astro, un framework moderno para crear sitios web 
 
 Además, el formulario de contacto está integrado con FormSubmit, facilitando la recepción segura y sencilla de mensajes sin necesidad de backend propio.
 
+Visita el sitio en: https://estudiowebsite.netlify.app/
+
 ---
 
 ¡Gracias por visitar y apoyar el proyecto!
