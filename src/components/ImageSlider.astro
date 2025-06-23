@@ -1,18 +1,22 @@
 ---
-const images = [
-  "src/assets/icons/Conflictoayuda.jpg",
-  "src/assets/icons/clasesparticulareshillkirk.jpg",
-];
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(['/src/assets/icons/Conflictoayuda.jpg', '/src/assets/icons/clasesparticulareshillkirk.jpg'], { eager: true });
+const images = Object.values(imageModules).map((image) => image.default);
+
 ---
 
 <section class="image-slider">
   <div class="slider-container">
-    {images.map((src, index) => (
-      <img
-        src={src}
+    {images.map((image, index) => (
+      <Image
+        src={image}
         alt={`Imagen ${index + 1}`}
         class={`slide${index === 0 ? " active" : ""}`}
-        loading="lazy"
+        loading="eager"
+        width={image.width}
+        height={image.height}
       />
     ))}
   </div>
@@ -45,6 +49,10 @@ const images = [
     });
 
     showSlide(current);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      showSlide(current);
+    });
   </script>
 
   <style>
