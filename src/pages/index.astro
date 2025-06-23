@@ -2,7 +2,8 @@
 import BaseLayout from "../layouts/layout.astro";
 
 const pageTitle = "Estudio Jurídico Alejandro Hillkirk | Asesoramiento Legal en Zárate";
-const pageDescription = "Con más de 20 años de experiencia, el Estudio Jurídico Alejandro Hillkirk ofrece asesoramiento legal en derecho civil, penal, laboral y gestoría en Zárate y la región.";
+const pageDescription = "Con más de 25 años de experiencia, el Estudio Jurídico Alejandro Hillkirk ofrece asesoramiento legal en derecho civil, penal, laboral y gestoría en Zárate y la región.";
+import ImageSlider from '../components/ImageSlider.astro'
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -15,7 +16,13 @@ const pageDescription = "Con más de 20 años de experiencia, el Estudio Jurídi
     </p>
   </section>
 
-  <section class="practice-areas-section">
+  <section class="image-slider">
+      <ImageSlider />
+  </section>
+
+
+
+  <section class="practice-areas-section"style="margin-top: 3rem;">
     <h3 class="section-title">Áreas de Práctica</h3>
     <div class="areas-grid">
       <a href="/servicios/civil" class="area-card">
@@ -30,15 +37,18 @@ const pageDescription = "Con más de 20 años de experiencia, el Estudio Jurídi
       <a href="/servicios/gestoria" class="area-card">
         Gestoría
       </a>
+      <a href="/servicios/clasesparticulares" class="area-card">
+        Clases Particulares
+      </a>
     </div>
   </section>
 
   <section class="cta-section">
     <h3 class="section-title">¿Necesitás ayuda legal?</h3>
-    <p class="cta-text">
+    <p class="cta-text" style="margin-bottom: 5rem;">
       Estamos disponibles para responder tus consultas. No dudes en contactarnos.
     </p>
-    <a href="/contacto" class="cta-button">
+    <a href="/contacto" class="cta-button" style="margin-top: 3rem;">
       Contactanos
     </a>
   </section>

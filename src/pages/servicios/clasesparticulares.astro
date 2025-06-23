@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/layout.astro";
+const areas = [
+  "Derecho Civil",
+  "Derecho Penal",
+  "Derecho Constitucional",
+  "Teoría del Derecho",
+  "Derecho Procesal",
+  "Contratos y obligaciones"
+];
+---
+
+<BaseLayout>
+  <section style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+    <h1 style="color: #003366; font-size: 2.5rem; margin-bottom: 1rem;">
+      Clases Particulares para Estudiantes de Derecho
+    </h1>
+
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+      ¿Estás estudiando Derecho o una carrera afín? Como abogado con experiencia académica y profesional, ofrezco clases particulares personalizadas para ayudarte a entender los contenidos, preparar exámenes y avanzar con seguridad.
+    </p>
+
+    <h2 style="color: #003366; font-size: 1.8rem; margin-bottom: 1rem;">Áreas en las que te puedo ayudar</h2>
+    <ul style="font-size: 1.1rem; margin-left: 1.5rem; line-height: 1.6;">
+      {areas.map(area => <li>{area}</li>)}
+    </ul>
+
+    <h2 style="color: #003366; font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Modalidad</h2>
+    <p style="font-size: 1.1rem; line-height: 1.6;">
+      Las clases pueden ser virtuales o presenciales (en Zárate y alrededores), con horarios flexibles y enfoque práctico. También trabajo con grupos reducidos o acompañamiento individual intensivo según necesidad.
+    </p>
+
+    <div style="text-align: center; margin-top: 2.5rem;">
+      <a href="/contacto" style="background-color: #007BFF; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: bold;">
+        Consultá por una clase
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+const images = [
+  "src/assets/icons/Conflictoayuda.jpg",
+  "src/assets/icons/clasesparticulareshillkirk.jpg",
+];
+---
+
+<section class="image-slider">
+  <div class="slider-container">
+    {images.map((src, index) => (
+      <img
+        src={src}
+        alt={`Imagen ${index + 1}`}
+        class={`slide${index === 0 ? " active" : ""}`}
+        loading="lazy"
+      />
+    ))}
+  </div>
+  <div class="slider-controls">
+    <button class="prev">⟨</button>
+    <button class="next">⟩</button>
+  </div>
+
+  <!-- Script para interactividad -->
+  <script type="module" is:inline>
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    nextBtn?.addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+    showSlide(current);
+  </script>
+
+  <style>
+    .image-slider {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider-container {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .slider-controls button {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      padding: 1rem;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</section>
