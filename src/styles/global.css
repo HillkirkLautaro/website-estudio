@@ -110,6 +110,33 @@ main {
   transform: scale(1.1);
 }
 
+/* --- Estilo de Foco Visible para Accesibilidad --- */
+:focus-visible {
+  outline: 3px solid #ffcc00; /* Un color de alto contraste */
+  outline-offset: 2px;
+  border-radius: 4px; /* Opcional: para redondear el contorno */
+}
+
+/* Enlace para "Saltar al contenido" */
+.skip-link {
+  position: absolute;
+  left: 50%; /* Lo centramos horizontalmente */
+  transform: translateX(-50%) translateY(-100%); /* Lo centramos y ocultamos arriba */
+  background: #002a52; /* Un azul ligeramente más claro que el header */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  border-radius: 0 0 8px 8px; /* Bordes redondeados en la parte inferior */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.skip-link:focus {
+  transform: translateX(-50%) translateY(0); /* Lo hacemos visible al recibir foco */
+}
+
 /* --- Responsive Styles --- */
 @media (max-width: 768px) {
   /* Header */
