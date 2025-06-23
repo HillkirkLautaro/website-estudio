@@ -2,18 +2,20 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-const imageModules = import.meta.glob<{ default: ImageMetadata }>(['/src/assets/icons/Conflictoayuda.jpg', '/src/assets/icons/clasesparticulareshillkirk.jpg'], { eager: true });
+const imageModules = import.meta.glob<{ default: ImageMetadata }>([
+  '/src/assets/icons/Conflictoayuda.jpg',
+  '/src/assets/icons/clasesparticulareshillkirk.jpg'
+], { eager: true });
+
 const images = Object.values(imageModules).map((image) => image.default);
-
 ---
-
-<section class="image-slider">
+<section class="image-slider animate-in">
   <div class="slider-container">
     {images.map((image, index) => (
       <Image
         src={image}
         alt={`Imagen ${index + 1}`}
-        class={`slide${index === 0 ? " active" : ""}`}
+        class="slide"
         loading="eager"
         width={image.width}
         height={image.height}
@@ -25,33 +27,104 @@ const images = Object.values(imageModules).map((image) => image.default);
     <button class="next">⟩</button>
   </div>
 
-  <!-- Script para interactividad -->
   <script type="module" is:inline>
+    const slider = document.querySelector('.image-slider');
+    const container = document.querySelector('.slider-container');
     const slides = document.querySelectorAll('.slide');
     const nextBtn = document.querySelector('.next');
     const prevBtn = document.querySelector('.prev');
     let current = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+    let autoPlayInterval = null;
 
     function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
+      const offset = -index * 100;
+      container.style.transform = `translateX(${offset}%)`;
+
+      const activeSlide = slides[index];
+      if (activeSlide && slider) {
+        const adjustHeight = () => {
+          slider.style.height = `${activeSlide.offsetHeight}px`;
+        };
+
+        // Ajusta la altura cuando la imagen esté cargada
+        if (activeSlide.complete) {
+          adjustHeight();
+        } else {
+          activeSlide.addEventListener('load', adjustHeight, { once: true });
+        }
+      }
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay(); // Evita múltiples intervalos
+      autoPlayInterval = setInterval(() => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      }, 3000);
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
     }
 
     nextBtn?.addEventListener('click', () => {
+      stopAutoPlay();
       current = (current + 1) % slides.length;
       showSlide(current);
     });
 
     prevBtn?.addEventListener('click', () => {
+      stopAutoPlay();
       current = (current - 1 + slides.length) % slides.length;
       showSlide(current);
     });
 
-    showSlide(current);
+    // --- Touch Events ---
+    container?.addEventListener('touchstart', (e) => {
+      stopAutoPlay();
+      touchStartX = e.touches[0].clientX;
+      isDragging = true;
+      // Desactivar la transición para un movimiento instantáneo
+      container.style.transition = 'none';
+    });
+
+    container?.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      touchEndX = e.touches[0].clientX;
+      const diff = touchEndX - touchStartX;
+      // Mover el slider con el dedo
+      container.style.transform = `translateX(${-current * 100 + (diff / container.offsetWidth) * 100}%)`;
+    });
+
+    container?.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      // Reactivar la transición para el efecto de "snap"
+      container.style.transition = 'transform 0.5s ease-in-out';
+
+      const threshold = container.offsetWidth / 4; // Umbral para cambiar de slide
+      if (touchStartX - touchEndX > threshold) {
+        // Swipe a la izquierda
+        current = (current + 1) % slides.length;
+      } else if (touchEndX - touchStartX > threshold) {
+        // Swipe a la derecha
+        current = (current - 1 + slides.length) % slides.length;
+      }
+
+      showSlide(current); // Vuelve a la posición correcta
+    });
+
+    slider?.addEventListener('mouseenter', stopAutoPlay);
+    slider?.addEventListener('mouseleave', startAutoPlay);
 
     window.addEventListener('DOMContentLoaded', () => {
-      showSlide(current);
+      if (slides.length > 0) {
+        showSlide(current);
+        startAutoPlay();
+      }
     });
   </script>
 
@@ -64,6 +137,7 @@ const images = Object.values(imageModules).map((image) => image.default);
       overflow: hidden;
       border-radius: 16px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: height 0.4s ease-in-out;
     }
 
     .slider-container {
@@ -73,11 +147,10 @@ const images = Object.values(imageModules).map((image) => image.default);
 
     .slide {
       min-width: 100%;
-      display: none;
-    }
-
-    .slide.active {
-      display: block;
+      flex-shrink: 0;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
 
     .slider-controls {
@@ -87,6 +160,7 @@ const images = Object.values(imageModules).map((image) => image.default);
       display: flex;
       justify-content: space-between;
       transform: translateY(-50%);
+      z-index: 10;
     }
 
     .slider-controls button {
@@ -96,6 +170,20 @@ const images = Object.values(imageModules).map((image) => image.default);
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+
+    /* Entrada animada del slider */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeSlideIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </section>
