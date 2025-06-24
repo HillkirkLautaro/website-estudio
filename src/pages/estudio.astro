@@ -5,6 +5,9 @@ import type { ImageMetadata } from "astro";
 
 const imageModules = import.meta.glob<{ default: ImageMetadata }>("/src/assets/GaleriaEstudio/*.jpg", { eager: true });
 const images = Object.values(imageModules).map((mod) => mod.default);
+
+const imageModules2 = import.meta.glob<{ default: ImageMetadata }>("/src/assets/Diplomas/*.jpg", { eager: true });
+const images2 = Object.values(imageModules2).map((mod) => mod.default);
 ---
 
 <BaseLayout title="Estudio | Alejandro Hillkirk" description="Galería de fotos del estudio jurídico físico en Zárate. Conocé nuestras instalaciones.">
@@ -13,7 +16,9 @@ const images = Object.values(imageModules).map((mod) => mod.default);
     <p class="page-subtitle">Conocé el espacio donde brindamos atención personalizada.</p>
   </section>
 
+  <!-- GALERÍA DEL ESTUDIO -->
   <section class="gallery">
+    <h2 class="section-title">Fotos del Estudio</h2>
     {images.map((image, index) => (
       <div class="gallery-item">
         <Image 
@@ -23,6 +28,24 @@ const images = Object.values(imageModules).map((mod) => mod.default);
           height={image.height}
           loading={index < 4 ? "eager" : "lazy"}
         />
+      </div>
+    ))}
+  </section>
+
+  <!-- GALERÍA DE CERTIFICADOS -->
+  <section class="gallery">
+    <h2 class="section-title">Certificados y Diplomas</h2>
+    {images2.map((image2, index2) => (
+      <div class="gallery-item">
+        <a href={image2.src} target="_blank" rel="noopener noreferrer">
+          <Image 
+            src={image2} 
+            alt={`Certificado ${index2 + 1}`}
+            width={image2.width}
+            height={image2.height}
+            loading="lazy"
+          />
+        </a>
       </div>
     ))}
   </section>
@@ -39,6 +62,14 @@ const images = Object.values(imageModules).map((mod) => mod.default);
       color: #333;
     }
 
+    .section-title {
+      grid-column: 1 / -1;
+      font-size: 1.8rem;
+      color: #003366;
+      margin: 2rem 0 1rem;
+      text-align: center;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -46,6 +77,10 @@ const images = Object.values(imageModules).map((mod) => mod.default);
       padding: 1rem 2rem 3rem;
       max-width: 1200px;
       margin: auto;
+    }
+
+    .gallery + .gallery {
+      margin-top: 3rem;
     }
 
     .gallery-item {
@@ -66,7 +101,6 @@ const images = Object.values(imageModules).map((mod) => mod.default);
       transform: scale(1.03);
     }
 
-    /* ✅ Responsive */
     @media (max-width: 768px) {
       .page-title {
         font-size: 2rem;
