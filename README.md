@@ -54,7 +54,7 @@ website-estudio/
 
 ## 🚀 Despliegue
 
-El sitio está configurado para desplegarse en Netlify. Los cambios en la rama `main` se despliegan automáticamente.
+El sitio está configurado para desplegarse en Netlify. Los cambios en la rama `master` se despliegan automáticamente.
 
 ## 🌐 En Vivo
 
