@@ -1,0 +1,59 @@
+---
+// src/components/ui/Card.astro
+// Tarjeta reutilizable con elevación limpia, borde sutil y hover lift.
+export interface Props {
+  href?: string;
+  class?: string;
+}
+
+const { href, class: className = "" } = Astro.props;
+const Tag = href ? "a" : "article";
+---
+
+<Tag {href} class={`card ${className}`}>
+  <slot />
+</Tag>
+
+<style>
+  :global(.card) {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: inherit;
+    color: inherit;
+  }
+
+  :global(.card):hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-hover);
+  }
+
+  :global(.card-body) {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  :global(.card-title) {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    color: var(--color-text);
+  }
+
+  :global(.card-text) {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>
