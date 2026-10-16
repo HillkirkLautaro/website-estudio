@@ -1,144 +1,106 @@
 ---
 import BaseLayout from "../layouts/layout.astro";
+import Button from "../components/ui/Button.astro";
 
 const pageTitle = "Sobre Nosotros | Estudio Jurídico Alejandro Hillkirk";
 const pageDescription = "Conocé la trayectoria y el compromiso de nuestro estudio jurídico. Más de 25 años de experiencia brindando asesoramiento legal en Zárate y la región.";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="about-section">
-    <h1 class="page-title">
-      Sobre Nosotros
-    </h1>
-    <p class="about-text">
-      En Estudio Jurídico Alejandro Hillkirk contamos con más de 25 años de experiencia ofreciendo asesoramiento legal integral y personalizado. Nuestra misión es proteger los derechos de nuestros clientes, brindando soluciones claras y efectivas en cada caso.
-    </p>
-    <p class="about-text">
-      Nuestro equipo está formado por abogados especializados en distintas ramas del derecho, comprometidos con la excelencia profesional y la ética. Trabajamos con dedicación para lograr resultados favorables y la tranquilidad de quienes confían en nosotros.
-    </p>
-    <p class="about-text">
-      Estamos ubicados en Zárate y atendemos a clientes de toda la región, ofreciendo un trato cercano y atención personalizada.
-    </p>
+  <section class="about section">
+    <div class="container">
+      <div class="section-header">
+        <h1>Sobre Nosotros</h1>
+        <p>Más de 25 años protegiendo los derechos de quienes confían en nosotros.</p>
+      </div>
+      <div class="about-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start;">
+        <div class="about-text-col animate-in">
+          <p class="about-text lead">
+            En Estudio Jurídico Alejandro Hillkirk contamos con más de 25 años de experiencia ofreciendo asesoramiento legal integral y personalizado. Nuestra misión es proteger los derechos de nuestros clientes, brindando soluciones claras y efectivas en cada caso.
+          </p>
+          <p class="about-text">
+            Nuestro equipo está formado por abogados especializados en distintas ramas del derecho, comprometidos con la excelencia profesional y la ética. Trabajamos con dedicación para lograr resultados favorables y la tranquilidad de quienes confían en nosotros.
+          </p>
+          <p class="about-text">
+            Estamos ubicados en Zárate y atendemos a clientes de toda la región, ofreciendo un trato cercano y atención personalizada.
+          </p>
+        </div>
+        <div class="about-highlight card animate-in-delayed">
+          <div class="card-body">
+            <h3 class="card-title">+25 años de trayectoria</h3>
+            <p class="card-text">Experiencia comprobada en derecho civil, penal, laboral y gestoría legal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="location-section">
-    <h2 class="section-title">
-      Nuestra Ubicación
-    </h2>
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.345254213112!2d-59.02354038480593!3d-34.10185168059807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bceb63322a96d9%3A0xd19b538e680a2c6b!2sAndrade%20249%2C%20Z%C3%A1rate%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1687270000000!5m2!1ses!2sar"
-        class="map-iframe"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+  <section class="location section">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Nuestra Ubicación</h2>
+        <p>Visitanos en nuestro estudio de Zárate, Buenos Aires.</p>
+      </div>
+      <div class="location-grid" style="display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start;">
+        <div class="map-wrapper animate-in">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.345254213112!2d-59.02354038480593!3d-34.10185168059807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bceb63322a96d9%3A0xd19b538e680a2c6b!2sAndrade%20249%2C%20Z%C3%A1rate%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1687270000000!5m2!1ses!2sar"
+              class="map-iframe"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+        <div class="location-info card animate-in-delayed">
+          <div class="card-body">
+            <h3 class="card-title">Estudio Jurídico Alejandro Hillkirk</h3>
+            <p class="card-text" style="margin: 0 0 1rem;">
+              Andrade 249, Zárate, Buenos Aires, Argentina
+            </p>
+            <Button variant="outline" size="sm" asChild={false} href="https://www.google.com/maps/place/Alejandro+Hillkirk+Abogado+Consultor/data=!4m2!3m1!1s0x0:0x5dab1c177062f68b?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer">
+              Ver en Google Maps
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="address-text">
-      Andrade 249, Zárate, Buenos Aires, Argentina
-    </p>
-    <a
-      href="https://www.google.com/maps/place/Alejandro+Hillkirk+Abogado+Consultor/data=!4m2!3m1!1s0x0:0x5dab1c177062f68b?sa=X&ved=1t:2428&ictx=111"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="map-button"
-    >
-      Ver en Google Maps
-    </a>
   </section>
 </BaseLayout>
 
 <style>
-  /* --- Base Styles --- */
-  .about-section,
-  .location-section {
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-    text-align: center;
+  :global(.about) { position: relative; }
+
+  :global(.about-text) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin: 0 0 1.25rem;
   }
 
-  .location-section {
-    margin-bottom: 5rem;
-  }
+  :global(.about-text:last-child) { margin-bottom: 0; }
 
-  .page-title {
-    color: #003366;
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-  }
+  :global(.location) { position: relative; }
 
-  .section-title {
-    color: #003366;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .about-text {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #333;
-    margin-top: 1.5rem;
-  }
-
-  .about-text:first-of-type {
-    margin-top: 0;
-  }
-
-  .map-container {
-    border: 2px solid #003366;
-    border-radius: 8px;
+  :global(.map-container) {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    max-width: 100%;
-    height: 400px;
-    margin: 0 auto;
-  }
-
-  .map-iframe {
-    border: 0;
     width: 100%;
-    height: 100%;
+    height: 420px;
+    background: var(--color-surface);
   }
 
-  .address-text {
-    margin-top: 1rem;
-    font-size: 1.1rem;
-    color: #003366;
-    font-weight: 600;
-  }
+  :global(.map-iframe) { border: 0; width: 100%; height: 100%; }
 
-  .map-button {
-    display: inline-block;
-    margin-top: 1rem;
-    background-color: #003366;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
+  :global(.location-info) { max-width: 320px; }
 
-  .map-button:hover {
-    background-color: #0056b3;
-  }
+  :global(.location-info .card-title) { margin-bottom: 0.5rem; }
 
-  /* --- Responsive Styles --- */
-  @media (max-width: 768px) {
-    .page-title {
-      font-size: 2.2rem;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-    }
-
-    .about-text {
-      font-size: 1.1rem;
-    }
-
-    .map-container {
-      height: 300px; /* Reducir altura del mapa en móviles */
-    }
+  @media (width <= 768px) {
+    :global(.location-grid) { grid-template-columns: 1fr; }
+    :global(.map-container) { height: 300px; }
+    :global(.location-info) { max-width: none; }
   }
 </style>

@@ -1,179 +1,186 @@
 ---
 import BaseLayout from "../layouts/layout.astro";
+import Button from "../components/ui/Button.astro";
 ---
 
 <BaseLayout>
-  <section class="contact-section">
-    <h1 class="title">Contacto</h1>
-    <p class="subtitle">
-      Para consultas o asesoramiento legal, completá el siguiente formulario o contactanos por nuestras redes sociales y correo electrónico.
-    </p>
+  <section class="contact-section section">
+    <div class="container">
+      <div class="section-header animate-in">
+        <h1>Contacto</h1>
+        <p>Para consultas o asesoramiento legal, completá el siguiente formulario o contactanos por nuestras redes sociales y correo electrónico.</p>
+      </div>
 
-    <form 
-      action="https://formsubmit.co/alejandrohk@gmail.com" 
-      method="POST" 
-      class="contact-form"
-    >
-      <!-- Anti-spam y control -->
-      <input type="hidden" name="_captcha" value="true" />
-      <input type="hidden" name="_next" value="https://estudiowebsite.netlify.app/gracias/" />
+      <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start;">
+        <!-- Formulario -->
+        <form
+          action="https://formsubmit.co/alejandrohk@gmail.com"
+          method="POST"
+          class="contact-form animate-in-delayed"
+        >
+          <!-- Anti-spam y control -->
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_next" value="https://estudiowebsite.netlify.app/gracias/" />
 
-      <label>
-        Nombre
-        <input type="text" name="nombre" required maxlength="100" class="form-input" />
-      </label>
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input
+              id="nombre"
+              type="text"
+              name="nombre"
+              required
+              maxlength="100"
+              class="form-input"
+              placeholder="Tu nombre completo"
+            />
+          </div>
 
-      <label>
-        Email
-        <input type="email" name="email" required maxlength="100" class="form-input" />
-      </label>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              maxlength="100"
+              class="form-input"
+              placeholder="tu@email.com"
+            />
+          </div>
 
-      <label>
-        Mensaje
-        <textarea name="mensaje" rows="5" required maxlength="1000" class="form-input"></textarea>
-      </label>
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              required
+              maxlength="1000"
+              class="form-input"
+              placeholder="Cuéntanos cómo podemos ayudarte"
+            ></textarea>
+          </div>
 
-      <button type="submit" class="submit-button">
-        Enviar
-      </button>
-    </form>
+          <Button type="submit" variant="primary" size="lg" class="w-full">
+            Enviar mensaje
+          </Button>
+        </form>
 
-    <!-- Contacto rápido redes -->
-    <section class="quick-contact">
-      <h2 class="quick-contact-title">Contacto rápido</h2>
-
-      <p>
-        <strong>WhatsApp:</strong>
-        <a href="https://wa.me/+5493487230611" target="_blank" rel="noopener" class="social-link whatsapp">+54 9 3487 23-0611</a>
-      </p>
-
-      <p>
-        <strong>Instagram:</strong>
-        <a href="https://www.instagram.com/alejandrohillkirk_abogado_/" target="_blank" rel="noopener" class="social-link instagram">@alejandrohillkirk_abogado_</a>
-      </p>
-
-      <p>
-        <strong>Facebook:</strong>
-        <a href="https://www.facebook.com/HillkirkAlejandro" target="_blank" rel="noopener" class="social-link facebook">Alejandro Hillkirk Abogado</a>
-      </p>
-
-      <p>
-        <strong>Email:</strong>
-        <a href="mailto:alejandrohk@gmail.com" class="social-link email">alejandrohk@gmail.com</a>
-      </p>
-    </section>
+        <!-- Contacto rápido -->
+        <div class="quick-contact card">
+          <div class="card-body">
+            <h2 class="quick-contact-title">Contacto rápido</h2>
+            <ul class="quick-list">
+              <li class="quick-item">
+                <span class="quick-label">WhatsApp</span>
+                <a href="https://wa.me/+5493487230611" target="_blank" rel="noopener noreferrer" class="quick-value whatsapp">+54 9 3487 23-0611</a>
+              </li>
+              <li class="quick-item">
+                <span class="quick-label">Instagram</span>
+                <a href="https://www.instagram.com/alejandrohillkirk_abogado_/" target="_blank" rel="noopener noreferrer" class="quick-value instagram">@alejandrohillkirk_abogado_</a>
+              </li>
+              <li class="quick-item">
+                <span class="quick-label">Facebook</span>
+                <a href="https://www.facebook.com/HillkirkAlejandro" target="_blank" rel="noopener noreferrer" class="quick-value facebook">Alejandro Hillkirk Abogado</a>
+              </li>
+              <li class="quick-item">
+                <span class="quick-label">Email</span>
+                <a href="mailto:alejandrohk@gmail.com" class="quick-value email">alejandrohk@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
-  .contact-section {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem; /* Añadimos padding para que el fondo se vea mejor */
-    position: relative; /* Requerido para la marca de agua */
-    isolation: isolate; /* Crea un nuevo contexto de apilamiento */
-    background-color: #fff; /* Fondo blanco para que el contenido sea legible */
-    border-radius: 8px; /* Bordes redondeados para un look más suave */
-  }
+  :global(.contact-section) { position: relative; }
 
-  /* Marca de agua para la sección de contacto */
-  .contact-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: url('../assets/logo-estudio.png'); /* Ruta actualizada al PNG */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    opacity: 0.05;
-    border-radius: inherit; /* Hereda los bordes redondeados */
-  }
-
-  .title {
-    color: #003366;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-
-  /* --- Responsive Styles --- */
-  @media (max-width: 768px) {
-    .title {
-      font-size: 2rem; /* Reducir tamaño para móviles */
-    }
-
-    .contact-section {
-      padding: 1rem; /* Menos padding en móviles */
-    }
-  }
-
-  .contact-form {
+  :global(.contact-form) {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .form-input {
+  :global(.form-group) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  :global(.form-group label) {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  :global(.form-input) {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    box-sizing: border-box;
   }
 
-  .submit-button {
-    background-color: #007BFF;
-    color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  :global(.form-input:focus) {
+    border-color: var(--color-primary-accent);
+    box-shadow: 0 0 0 4px rgb(0 123 255 / 0.12);
+    outline: none;
   }
 
-  .submit-button:hover {
-    background-color: #0056b3;
+  :global(.form-input::placeholder) { color: var(--color-text-muted); opacity: 0.7; }
+
+  :global(.w-full) { width: 100%; }
+
+  /* Contacto rápido */
+  :global(.quick-contact-title) {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1rem;
   }
 
-  .quick-contact {
-    margin-top: 2.5rem;
-    text-align: center;
+  :global(.quick-list) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
-  .quick-contact-title {
-    color: #003366;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+  :global(.quick-item) { display: flex; flex-direction: column; gap: 0.25rem; }
+
+  :global(.quick-label) {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
   }
 
-  .social-link {
-    text-decoration: none;
-    font-weight: 500;
+  :global(.quick-value) {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: color 200ms ease;
   }
 
-  .social-link:hover {
-    text-decoration: underline;
-  }
+  :global(.quick-value):hover { color: var(--color-primary-accent); text-decoration: underline; }
 
-  .social-link.whatsapp {
-    color: #25D366;
-  }
+  :global(.quick-value.whatsapp) { color: var(--color-success); }
+  :global(.quick-value.instagram) { color: #E1306C; }
+  :global(.quick-value.facebook) { color: #1877F2; }
+  :global(.quick-value.email) { color: var(--color-primary); }
 
-  .social-link.instagram {
-    color: #E1306C;
-  }
-
-  .social-link.facebook {
-    color: #1877F2;
-  }
-
-  .social-link.email {
-    color: #003366;
+  @media (width <= 768px) {
+    :global(.contact-grid) { grid-template-columns: 1fr; }
   }
 </style>

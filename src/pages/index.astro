@@ -1,144 +1,147 @@
 ---
 import BaseLayout from "../layouts/layout.astro";
+import ImageSlider from "../components/ImageSlider.astro";
+import Card from "../components/ui/Card.astro";
+import Button from "../components/ui/Button.astro";
 
 const pageTitle = "Estudio Jurídico Alejandro Hillkirk | Asesoramiento Legal en Zárate";
 const pageDescription = "Con más de 25 años de experiencia, el Estudio Jurídico Alejandro Hillkirk ofrece asesoramiento legal en derecho civil, penal, laboral y gestoría en Zárate y la región.";
-import ImageSlider from '../components/ImageSlider.astro'
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="hero-section">
-    <h2 class="hero-title">
-      Estudio Jurídico Alejandro Hillkirk
-    </h2>
-    <p class="hero-subtitle">
-      Más de 25 años de trayectoria brindando asesoramiento legal personalizado en Zárate y toda la región. Nuestro compromiso es con tus derechos y tu tranquilidad.
-    </p>
-  </section>
-
-  <section class="image-slider">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content animate-in">
+      <span class="hero-kicker">Asesoramiento legal experto</span>
+      <h1 class="hero-title">Defendemos tus derechos<br>con experiencia y compromiso</h1>
+      <p class="hero-subtitle lead">
+        Más de 25 años de trayectoria brindando asesoramiento legal personalizado en Zárate y toda la región.
+        Nuestro compromiso es con tus derechos y tu tranquilidad.
+      </p>
+      <div class="hero-actions" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <Button variant="primary" size="lg" asChild={false} href="/contacto">
+          Contactanos
+        </Button>
+        <Button variant="ghost" size="lg" asChild={false} href="/nosotros">
+          Conocé nuestro estudio
+        </Button>
+      </div>
+    </div>
+    <div class="hero-visual">
       <ImageSlider />
-  </section>
-
-
-
-  <section class="practice-areas-section"style="margin-top: 3rem;">
-    <h3 class="section-title">Áreas de Práctica</h3>
-    <div class="areas-grid">
-      <a href="/servicios/civil" class="area-card">
-        Derecho Civil
-      </a>
-      <a href="/servicios/penal" class="area-card">
-        Derecho Penal
-      </a>
-      <a href="/servicios/laboral" class="area-card">
-        Derecho Laboral
-      </a>
-      <a href="/servicios/gestoria" class="area-card">
-        Gestoría
-      </a>
-      <a href="/servicios/clasesparticulares" class="area-card">
-        Clases Particulares
-      </a>
     </div>
   </section>
 
-  <section class="cta-section">
-    <h3 class="section-title">¿Necesitás ayuda legal?</h3>
-    <p class="cta-text" style="margin-bottom: 5rem;">
-      Estamos disponibles para responder tus consultas. No dudes en contactarnos.
-    </p>
-    <a href="/contacto" class="cta-button" style="margin-top: 3rem;">
-      Contactanos
-    </a>
+  <!-- Áreas de práctica -->
+  <section class="practice-areas section bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <h2>Áreas de Práctica</h2>
+        <p>Cobertura integral en las principales ramas del derecho y gestión administrativa.</p>
+      </div>
+      <div class="areas-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+        <Card href="/servicios/civil" class="area-card" style="text-decoration: none; color: inherit;">
+          <div class="card-body">
+            <h3 class="card-title">Derecho Civil</h3>
+            <p class="card-text">Contratos, obligaciones, responsabilidad civil, sucesiones y propiedad.</p>
+          </div>
+        </Card>
+        <Card href="/servicios/penal" class="area-card" style="text-decoration: none; color: inherit;">
+          <div class="card-body">
+            <h3 class="card-title">Derecho Penal</h3>
+            <p class="card-text">Defensa en causas penales, juicios orales, recursos y medidas cautelares.</p>
+          </div>
+        </Card>
+        <Card href="/servicios/laboral" class="area-card" style="text-decoration: none; color: inherit;">
+          <div class="card-body">
+            <h3 class="card-title">Derecho Laboral</h3>
+            <p class="card-text">Contratos, despidos, indemnizaciones y representación ante el Ministerio.</p>
+          </div>
+        </Card>
+        <Card href="/servicios/gestoria" class="area-card" style="text-decoration: none; color: inherit;">
+          <div class="card-body">
+            <h3 class="card-title">Gestoría</h3>
+            <p class="card-text">Trámites civiles, notariales, automotores y ante organismos públicos.</p>
+          </div>
+        </Card>
+        <Card href="/servicios/clasesparticulares" class="area-card" style="text-decoration: none; color: inherit;">
+          <div class="card-body">
+            <h3 class="card-title">Clases Particulares</h3>
+            <p class="card-text">Apoyo para estudiantes de derecho, virtuales o presenciales.</p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section">
+    <div class="container">
+      <div class="cta-card" style="background: var(--color-primary); color: var(--color-text-inverse); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center;">
+        <h2 style="font-size: clamp(1.75rem, 4vw, 2rem); margin: 0 0 1rem;">¿Necesitás ayuda legal?</h2>
+        <p style="font-size: 1.1rem; opacity: 0.95; margin: 0 0 2rem;">
+          Estamos disponibles para responder tus consultas. No dudes en contactarnos.
+        </p>
+        <Button variant="primary" size="lg" asChild={false} href="/contacto">
+          Contactanos ahora
+        </Button>
+      </div>
+    </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero-section {
-    text-align: center;
-    padding: 3rem 1rem;
+  :global(.hero) {
+    position: relative;
+    padding: 4rem 0 3rem;
+    overflow: hidden;
   }
-  .hero-title {
-    color: #003366;
-    font-size: 2.5rem;
+
+  :global(.hero-content) {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  :global(.hero-kicker) {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary-accent);
     margin-bottom: 1rem;
   }
-  .hero-subtitle {
-    font-size: 1.2rem;
-    max-width: 700px;
+
+  :global(.hero-title) {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.25rem;
+  }
+
+  :global(.hero-subtitle) {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.7;
+    max-width: 640px;
     margin: 0 auto;
+    color: var(--color-text-muted);
   }
 
-  .practice-areas-section {
-    background-color: #f5f5f5;
-    padding: 2rem 1rem;
-    text-align: center;
-  }
-  .section-title {
-    color: #003366;
-    font-size: 2rem;
-  }
-  .areas-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-  .area-card {
-    background-color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    color: #003366;
-    text-decoration: none;
-    width: 200px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .area-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  :global(.hero-visual) {
+    max-width: 700px;
+    margin: 3rem auto 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
   }
 
-  .cta-section {
-    text-align: center;
-    padding: 3rem 1rem;
-  }
-  .cta-text {
-    font-size: 1.1rem;
-    margin: 1rem 0;
-  }
-  .cta-button {
-    background-color: #007BFF;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  .cta-button:hover {
-    background-color: #0056b3;
-  }
+  :global(.practice-areas) { position: relative; }
 
-  /* --- Responsive Styles --- */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2rem; /* Reducir tamaño para móviles */
-    }
+  :global(.areas-grid) { margin-top: 1rem; }
 
-    .section-title {
-      font-size: 1.8rem;
-    }
-
-    .areas-grid {
-      flex-direction: column; /* Apilar tarjetas verticalmente */
-      align-items: center;
-    }
-
-    .area-card {
-      width: 90%; /* Hacer las tarjetas más anchas */
-    }
-  }
+  :global(.cta-section) { position: relative; }
 </style>
