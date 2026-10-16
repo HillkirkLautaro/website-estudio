@@ -1,35 +1,98 @@
 ---
 import BaseLayout from "../../layouts/layout.astro";
+import Button from "../../components/ui/Button.astro";
 ---
 
 <BaseLayout>
-  <section style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
-    <h1 style="color: #003366; font-size: 2.5rem; margin-bottom: 1rem;">Derecho Laboral</h1>
+  <section class="service-page section">
+    <div class="container">
+      <div class="service-header animate-in">
+        <h1 class="service-title">Derecho Laboral</h1>
+        <p class="service-lead">
+          Nuestro equipo está especializado en Derecho Laboral, brindando asesoramiento integral tanto para empleados
+          como para empleadores. Contamos con un abogado con vasta experiencia, empleado del Ministerio de Trabajo
+          Provincial, que garantiza un profundo conocimiento de la normativa vigente y un enfoque práctico y eficiente.
+        </p>
+      </div>
 
-    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6;">
-      Nuestro equipo está especializado en Derecho Laboral, brindando asesoramiento integral tanto para empleados como para empleadores. 
-      Contamos con un abogado con vasta experiencia, empleado del Ministerio de Trabajo Provincial, que garantiza un profundo conocimiento de la normativa vigente y un enfoque práctico y eficiente.
-    </p>
+      <div class="service-grid" style="display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start;">
+        <div class="service-content">
+          <h2 class="service-subtitle">Servicios que ofrecemos</h2>
+          <ul class="service-list">
+            <li>Asesoramiento en contratos laborales y convenios colectivos.</li>
+            <li>Representación ante el Ministerio de Trabajo y sindicatos.</li>
+            <li>Gestión de reclamos por despidos injustificados.</li>
+            <li>Trámites de indemnizaciones y liquidaciones finales.</li>
+            <li>Asesoría en conflictos laborales y negociaciones.</li>
+            <li>Capacitación sobre derechos y obligaciones laborales.</li>
+          </ul>
 
-    <h2 style="color: #003366; font-size: 1.8rem; margin-bottom: 1rem;">Servicios que ofrecemos</h2>
-    <ul style="font-size: 1.1rem; margin-left: 1.5rem; line-height: 1.6;">
-      <li>Asesoramiento en contratos laborales y convenios colectivos.</li>
-      <li>Representación ante el Ministerio de Trabajo y sindicatos.</li>
-      <li>Gestión de reclamos por despidos injustificados.</li>
-      <li>Trámites de indemnizaciones y liquidaciones finales.</li>
-      <li>Asesoría en conflictos laborales y negociaciones.</li>
-      <li>Capacitación sobre derechos y obligaciones laborales.</li>
-    </ul>
+          <h2 class="service-subtitle" style="margin-top: 2.5rem;">¿Por qué elegirnos?</h2>
+          <p class="service-text">
+            Nuestra experiencia dentro del Ministerio de Trabajo Provincial nos permite tener una visión privilegiada
+            y actualizada sobre la legislación laboral y sus procesos administrativos. Esto nos asegura un
+            asesoramiento confiable, rápido y ajustado a tus necesidades.
+          </p>
+        </div>
 
-    <h2 style="color: #003366; font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">¿Por qué elegirnos?</h2>
-    <p style="font-size: 1.1rem; line-height: 1.6;">
-      Nuestra experiencia dentro del Ministerio de Trabajo Provincial nos permite tener una visión privilegiada y actualizada sobre la legislación laboral y sus procesos administrativos. Esto nos asegura un asesoramiento confiable, rápido y ajustado a tus necesidades.
-    </p>
-
-    <div style="text-align: center; margin-top: 2.5rem;">
-      <a href="/contacto" style="background-color: #007BFF; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: bold;">
-        Consultá con nuestros especialistas
-      </a>
+        <aside class="service-sidebar card">
+          <div class="card-body">
+            <h3 class="card-title">¿Necesitás asesoramiento laboral?</h3>
+            <p class="card-text">Consultá con nuestros especialistas y resolvé tu situación laboral con respaldo profesional.</p>
+            <Button variant="primary" size="base" asChild={false} href="/contacto" class="w-full" style="margin-top: 1rem;">
+              Consultá con nuestros especialistas
+            </Button>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  :global(.service-title) {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    color: var(--color-text);
+    margin: 0 0 0.75rem;
+  }
+
+  :global(.service-lead) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin: 0 0 2rem;
+    max-width: 680px;
+  }
+
+  :global(.service-subtitle) {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 0.75rem;
+  }
+
+  :global(.service-list) {
+    list-style: disc;
+    margin: 0 0 1.5rem 1.5rem;
+    padding: 0;
+    color: var(--color-text);
+    line-height: 1.8;
+    font-size: 1.02rem;
+  }
+
+  :global(.service-list li) { margin-bottom: 0.5rem; }
+
+  :global(.service-text) {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  :global(.service-sidebar) { max-width: 300px; }
+
+  @media (width <= 768px) {
+    :global(.service-grid) { grid-template-columns: 1fr; }
+    :global(.service-sidebar) { max-width: none; }
+  }
+</style>

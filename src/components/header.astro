@@ -1,22 +1,281 @@
 ---
-import { Image } from 'astro:assets';
-import logoImage from '../assets/icons/logoestudio.jpg';
+// src/components/header.astro
+// Header sticky con glassmorphism, navegación con estado activo, menú móvil y toggle de tema.
+import { Image } from "astro:assets";
+import logoImage from "../assets/icons/logoestudio.jpg";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/contacto", label: "Contacto" },
+  { href: "/estudio", label: "Estudio" },
+];
 ---
-<header class="main-header">
+
+<header class="main-header" id="site-header">
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
   <div class="header-container">
     <div class="logo-container">
-      <Image loading="eager" src={logoImage} alt="Logo Estudio Jurídico" width={100} height={100} />
-      <h1 class="logo-title">
-        Estudio Jurídico Alejandro Hillkirk
-      </h1>
+      <a href="/" class="logo-link">
+        <Image loading="eager" src={logoImage} alt="Logo Estudio Jurídico" width={40} height={40} />
+        <span class="logo-title">Estudio Jurídico<br>Alejandro Hillkirk</span>
+      </a>
     </div>
 
-    <nav class="main-nav">
-      <a href="/" class="nav-link">Inicio</a>
-      <a href="/nosotros" class="nav-link">Nosotros</a>
-      <a href="/contacto" class="nav-link">Contacto</a>
-      <a href="/estudio" class="nav-link">Estudio</a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      {navLinks.map((link) => {
+        const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+        return (
+          <a href={link.href} class={`nav-link ${isActive ? "nav-link--active" : ""}`} aria-current={isActive ? "page" : undefined}>
+            {link.label}
+          </a>
+        );
+      })}
     </nav>
-    
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="sr-only">Abrir menú</span>
+        <svg class="icon icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon icon-close" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú móvil -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-nav" aria-label="Navegación móvil">
+      {navLinks.map((link) => {
+        const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+        return (
+          <a href={link.href} class={`mobile-nav-link ${isActive ? "mobile-nav-link--active" : ""}`} aria-current={isActive ? "page" : undefined}>
+            {link.label}
+          </a>
+        );
+      })}
+    </nav>
   </div>
 </header>
+
+<style>
+  /* ---------- Variables locales (fallback si global.css no carga) ---------- */
+  :root {
+    --header-height: 72px;
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --header-border: var(--color-border, #e2e8f0);
+    --header-text: var(--color-text, #0f172a);
+    --header-accent: var(--color-primary-accent, #007BFF);
+    --header-active: var(--color-accent, #ffcc00);
+  }
+
+  .dark {
+    --header-bg: rgba(11, 16, 32, 0.8);
+    --header-border: var(--color-border, #1e293b);
+    --header-text: var(--color-text, #f8fafc);
+  }
+
+  /* ---------- Header glassmorphism ---------- */
+  .main-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-height);
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--header-border);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  }
+
+  .main-header[data-scrolled="true"] {
+    box-shadow: var(--shadow-md);
+  }
+
+  .header-container {
+    width: 100%;
+    max-width: var(--container-max, 1200px);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 100%;
+  }
+
+  /* ---------- Logo ---------- */
+  .logo-container { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+  .logo-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; }
+
+  .logo-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--header-text);
+    line-height: 1.15;
+    white-space: nowrap;
+    transition: color 200ms ease;
+  }
+
+  .logo-title:hover { color: var(--header-accent); }
+
+  /* ---------- Navegación desktop ---------- */
+  .main-nav { display: flex; gap: 2.25rem; align-items: center; flex-shrink: 0; }
+
+  .nav-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--header-text);
+    padding: 0.5rem 0;
+    transition: color 200ms ease;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav-link:hover { color: var(--header-accent); }
+
+  .nav-link--active {
+    color: var(--header-accent);
+    border-bottom-color: var(--header-accent);
+  }
+
+  .nav-link:focus-visible {
+    outline: 2px solid var(--header-accent);
+    outline-offset: 4px;
+    border-radius: 0.25rem;
+  }
+
+  /* ---------- Acciones (tema + menú) ---------- */
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+
+  .menu-toggle {
+    display: none; /* solo móvil */
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 0.6rem;
+    border: 1px solid var(--header-border);
+    background: var(--header-bg);
+    color: var(--header-text);
+    cursor: pointer;
+    transition: transform 120ms ease, border-color 200ms ease;
+  }
+
+  .menu-toggle:hover { border-color: var(--header-border-hover, #cbd5e1); }
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--header-accent);
+    outline-offset: 2px;
+  }
+
+  .menu-toggle .icon { width: 20px; height: 20px; display: none; }
+  .menu-toggle .icon-menu { display: block; }
+
+  [aria-expanded="true"] .icon-menu { display: none; }
+  [aria-expanded="true"] .icon-close { display: block; }
+
+  /* ---------- Menú móvil (oculto por defecto) ---------- */
+  .mobile-menu {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--header-border);
+    padding: 1rem 1.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: var(--shadow-md);
+    animation: slideDown 220ms ease-out forwards;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mobile-nav { display: flex; flex-direction: column; gap: 0; }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 0.9rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--header-text);
+    border-radius: 0.5rem;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .mobile-nav-link:hover { background: var(--color-surface-hover, #f1f5f9); color: var(--header-accent); }
+
+  .mobile-nav-link--active {
+    color: var(--header-accent);
+    background: rgb(255 204 0 / 0.12);
+  }
+
+  .mobile-nav-link:focus-visible {
+    outline: 2px solid var(--header-accent);
+    outline-offset: 4px;
+    border-radius: 0.25rem;
+  }
+
+  /* ---------- Responsivo ---------- */
+  @media (width <= 768px) {
+    .header-container { padding: 0 1rem; gap: 0.75rem; }
+    .logo-title { font-size: 1rem; }
+    .main-nav { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
+  }
+
+  @media (width > 768px) {
+    .mobile-menu { display: none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const header = document.getElementById("site-header");
+    const toggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    let ticking = false;
+
+    if (header) {
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            header.setAttribute("data-scrolled", window.scrollY > 10 ? "true" : "false");
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    if (toggle && mobileMenu) {
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        mobileMenu.classList.toggle("open");
+      });
+
+      // Cerrar menú al navegar
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          toggle.setAttribute("aria-expanded", "false");
+          mobileMenu.classList.remove("open");
+        });
+      });
+    }
+  })();
+</script>

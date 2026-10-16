@@ -1,8 +1,217 @@
 ---
 // src/components/Footer.astro
+// Footer moderno: columnas, marca, enlaces útiles, contacto y copyright.
+const year = new Date().getFullYear();
 ---
-<footer style="background-color: #003366; color: white; padding: 2rem 1rem; text-align: center;">
-    <p style="margin: 0;">&copy; {new Date().getFullYear()} Estudio Jurídico Alejandro Hillkirk. Todos los derechos reservados.</p>
-    <p style="margin: 0.5rem 0 0;">Zárate, Buenos Aires – Argentina</p>
-  </footer>
-  
+
+<footer class="site-footer">
+  <div class="footer-container container">
+    <div class="footer-grid">
+      <!-- Marca -->
+      <div class="footer-brand">
+        <div class="footer-logo">Estudio Jurídico<br><span class="footer-logo-light">Alejandro Hillkirk</span></div>
+        <p class="footer-text">
+          Asesoramiento legal integral y personalizado en Zárate y toda la región. Más de 25 años de experiencia protegiendo tus derechos.
+        </p>
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="https://wa.me/+5493487230611" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M20.66 7.36c-.66-2.58-2.9-4.66-5.72-5.72C10.9.56 8.82 2.73 8.16 5.32c-.42 1.62-.14 3.54.75 4.85-.28.21-.55.44-.81.66-.95.8-1.48 1.88-1.48 3.05 0 1.06.26 2.06.75 2.93.57.98 1.38 1.81 2.44 2.37.24.13.47.27.71.41 1.2.68 2.58 1.1 4.08 1.1 1.31 0 2.62-.23 3.81-.75 1.69-.76 2.8-2.02 3.26-3.52 1.17-3.85 1.32-8.12.56-12.11zM1.5 12c0 5.8 4.7 10.5 10.5 10.5S22.5 17.8 22.5 12c0-5.8-4.7-10.5-10.5-10.5S1.5 6.2 1.5 12z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/alejandrohillkirk_abogado_/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E1306C" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 11.37 16h0.05A4 4 0 0 1 16 11.37zM12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="https://www.facebook.com/HillkirkAlejandro" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Enlaces de navegación -->
+      <div class="footer-links">
+        <h3 class="footer-title">Navegación</h3>
+        <ul class="footer-list">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/nosotros">Nosotros</a></li>
+          <li><a href="/estudio">Estudio</a></li>
+          <li><a href="/servicios/civil">Derecho Civil</a></li>
+          <li><a href="/servicios/penal">Derecho Penal</a></li>
+          <li><a href="/servicios/laboral">Derecho Laboral</a></li>
+          <li><a href="/servicios/gestoria">Gestoría</a></li>
+          <li><a href="/servicios/clasesparticulares">Clases Particulares</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer-contact">
+        <h3 class="footer-title">Contacto directo</h3>
+        <ul class="footer-list">
+          <li><a href="https://wa.me/+5493487230611" target="_blank" rel="noopener noreferrer" class="footer-whatsapp">WhatsApp <span class="footer-whatsapp-icon">→</span></a></li>
+          <li><a href="mailto:alejandrohk@gmail.com">alejandrohk@gmail.com</a></li>
+          <li>Zárate, Buenos Aires – Argentina</li>
+          <li>Andrade 249, Zárate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {year} Estudio Jurídico Alejandro Hillkirk. Todos los derechos reservados.
+      </p>
+      <p class="footer-terms">
+        <a href="/contacto" class="footer-link-muted">Política de privacidad</a> ·
+        <a href="/contacto" class="footer-link-muted">Términos y condiciones</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  :global(.site-footer) {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  :global(.footer-grid) {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr;
+    gap: 2.5rem;
+    padding: 3.5rem 0 2rem;
+  }
+
+  :global(.footer-brand) { max-width: 340px; }
+
+  :global(.footer-logo) {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  :global(.footer-logo-light) {
+    color: var(--color-primary-accent);
+  }
+
+  :global(.footer-text) {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  :global(.footer-social) {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  :global(.footer-social-link) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 0.6rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: inherit;
+    transition: transform 120ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  :global(.footer-social-link):hover {
+    transform: translateY(-2px);
+    border-color: var(--color-border-hover);
+    box-shadow: var(--shadow-md);
+  }
+
+  :global(.footer-links) h3,
+  :global(.footer-contact) h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  :global(.footer-list) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  :global(.footer-list) a {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    transition: color 200ms ease;
+  }
+
+  :global(.footer-list) a:hover {
+    color: var(--color-primary-accent);
+    text-decoration: underline;
+  }
+
+  :global(.footer-whatsapp) {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-success);
+    font-weight: 700;
+  }
+
+  :global(.footer-whatsapp):hover { text-decoration: underline; }
+
+  :global(.footer-whatsapp-icon) {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* ---------- Bottom ---------- */
+  :global(.footer-bottom) {
+    border-top: 1px solid var(--color-border);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  :global(.footer-copy) {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  :global(.footer-terms) {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  :global(.footer-link-muted) {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color 200ms ease;
+  }
+
+  :global(.footer-link-muted):hover { color: var(--color-primary-accent); }
+
+  /* ---------- Responsive ---------- */
+  @media (width <= 768px) {
+    :global(.footer-grid) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    :global(.footer-brand) { max-width: none; }
+    :global(.footer-bottom) { flex-direction: column; gap: 1rem; }
+  }
+</style>
